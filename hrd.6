@@ -1,0 +1,96 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH HRD 6 "April 25, 2004" "hrd v0.1" "HuaRongDao Game Manual"
+.\" Please adjust this date whenever revising the manpage.
+.SH NAME
+hrd \- the puzzle game: HuaRongDao
+.SH SYNOPSIS
+.B hrd
+[pattern]
+.SH DESCRIPTION
+Run the RuaRongDao game with the "pattern" if one is given at the 
+command line, otherwise run the game with the default pattern.
+See the \fBPATTERN\fP section below for more information.
+.PP
+HuaRongDao is an ancient Chinese game.  The rules are very easy to
+understand, but the game is not so easy to solve.
+.PP
+The aim of the game is to move pieces in order to free the largest
+one from the bottom side of the board, with as few steps as possible.  
+You may not make one piece jump over another, nor can any two
+pieces overlap.  Continuously moving one piece is counted as a single
+step.
+.SH USAGE
+The following commands are supported by this program.
+.TP
+.B 0-9
+Mark the desired piece selected.  The peice is then moved by
+one or two direction letter:
+.B l
+for LEFT,
+.B r
+for RIGHT,
+.B u
+for UP, or
+.B d
+for DOWN. Normally the arrow keys can also be used as the
+direction command.
+.TP
+.B q
+Quit the game.
+.TP
+.B u
+Undo one step.
+.TP
+.B r
+Redo one step.
+.TP
+.B b
+Save a bookmark.  A single letter is prompted as the bookmark slot,
+valid bookmarks are \fBa-z\fP, \fBA-Z\fP, or \fB0-9\fP.
+.TP
+.B l
+Load from a bookmark.  A bookmark slot is prompted.
+.PP
+\fBCtrl-C\fP can be used to cancel the current command.  
+\fBENTER\fP can be used to reset the prompt and echo area.
+.PP
+\fBCtrl-L\fP can be used to redraw the screen.
+.SH PATTERN
+A pattern can be encoded as a string.  Each grid of the board is
+encoded as a letter.  Each row is followed by a \fBdot\fP.
+.TP
+.B
+Q
+To indicate a big square.
+.TP
+.B
+L R
+To indicate the left and the right of a horizontal rectangle respectively.
+.TP
+.B
+T B
+To indicate the top and the bottom of a vertical rectangle respectively.
+.TP
+.B
+P
+To indicate a small square.
+.TP
+.B
+_
+To indicate an empty grid.
+.PP
+The dafault pattern can be encoded as \fBTQQT.BQQB.TLRT.BPPB.P__P\fP.
+.SH FILES
+.TP
+.IB $HOME/.hrd/bookmark
+The bookmark file.
+.SH BUGS
+Usage of Ctrl-Z to suspend of this program is not supported (yet).
+.SH AUTHOR
+This program was written by Qingning Huo <qhuo@users.sf.net>.
+.SH SEE ALSO
+The development website of this program is \fBhttp://hrd.sf.net/\fP.
+Many thanks to SourceForge.net.

@@ -1,0 +1,11 @@
+dnl
+dnl $Id: configure.in,v 1.4 2004/04/25 11:08:06 qhuo Exp $
+dnl
+AC_INIT(hrd.h)
+AM_INIT_AUTOMAKE(hrd, 0.1)
+AM_CONFIG_HEADER(config.h)
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+MP_WITH_CURSES
+AC_SUBST(CURSES_LIB)
+AC_OUTPUT(Makefile)

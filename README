@@ -1,0 +1,81 @@
+INTRODUCTION
+
+HuaRongDao is an ancient Chinese game.  The rules are very easy to
+understand, but the game is not so easy to solve.
+
+The aim of the game is to move pieces in order to free the largest
+one from the bottom side of the board, with as few steps as possible.
+You may not make one piece jump over another, nor can any two
+pieces overlap.  Continuously moving one piece is counted as a single
+step.
+
+
+INSTALL
+
+This program should compile and run on most recent Unix systems.
+The following systems are tested: Linux, FreeBSD, OpenBSD, NetBSD,
+Solaris, and OSX.
+
+You need a curses library to run the program.  And you need the
+curses developers' library and a C++ compiler to compile the program.
+
+You should be able to install the program with the following steps.
+        ./configure
+        make
+
+This will build an executable called "hrd".  You may run the following
+command to install the program.
+
+        make install (with root permission)
+
+You may also install it to another place by passing "--prefix=/path/to/dir"
+to the "./configure" command.  Run "./configure --help" for more options.
+
+
+USAGE
+       The following commands are supported by this program.
+
+       0-9    Make the desired piece selected.  The peice is then moved by one
+              or two direction letter: l for LEFT, r for RIGHT, u for UP, or d
+              for DOWN. Normally the arrow keys can also be used as the direc-
+              tion command.
+
+       q      Quit the game.
+
+       u      Undo one step.
+
+       r      Redo one step.
+
+       b      Save a bookmark.  A single letter is prompted  as  the  bookmark
+              slot, supported letters are a-z, A-Z, or 0-9.
+
+       l      Load from a bookmark.  A bookmark slot is prompted.
+
+       Ctrl-C can be used to cancel the current command.  ENTER can be used to
+       reset the prompt and echo area.
+
+
+INFORMATION
+
+The HuaRongDao project is hosted by SourceForge.net, at http://hrd.sf.net/.
+You can find more information and newest version there.
+
+
+COPYRIGHT
+
+hrd -- The puzzle game: HuaRongDao -- http://hrd.sourceforge.net/
+Copyright (C) 2004 by Qingning Huo <qhuo@users.sourceforge.net>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
