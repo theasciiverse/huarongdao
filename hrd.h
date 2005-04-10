@@ -374,11 +374,6 @@ protected:
 	int m_error;
 };
 
-inline
-Lock::~Lock()
-{
-}
-
 //! concrete Lock class use fcntl()
 class RecordLock : public Lock
 {
