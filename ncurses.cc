@@ -24,6 +24,9 @@
 NcursesInterface::NcursesInterface(Board* board)
 	: Interface(board)
 {
+	/* wide ncurses then draws the boxes in UTF-8 on terminals where it
+	   does not trust the VT100 line set (screen, tmux, the Linux console) */
+	setlocale(LC_ALL, "");
 	initscr();
 	raw();
 	keypad(stdscr, TRUE);
@@ -65,7 +68,8 @@ int
 NcursesInterface::next_event()
 {
 	int ch;
-	while ((ch = getch()) == HRD_CTRL_L)
+	/* Ctrl-L redraws; so does a resize, with the board centred again */
+	while ((ch = getch()) == HRD_CTRL_L || ch == KEY_RESIZE)
 		redraw();
 	return ch;
 }

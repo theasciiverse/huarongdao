@@ -36,6 +36,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <locale.h>
 
 #include <string>
 #include <sstream>
@@ -51,6 +52,11 @@
 using std::string;
 using std::ostringstream;
 using std::vector;
+
+//! isdigit() and isalnum() for curses key codes: the cursor and function
+//! keys are above 255, outside what the <ctype.h> functions accept
+inline bool key_isdigit(int c) { return c >= 0 && c < 256 && isdigit(c); }
+inline bool key_isalnum(int c) { return c >= 0 && c < 256 && isalnum(c); }
 
 ////////////////////////////////////////////////////////////////////////
 //

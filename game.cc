@@ -85,7 +85,7 @@ Game::loop()
 			m_iface->draw();
 		}
 
-		else if (isdigit(ch)) {
+		else if (key_isdigit(ch)) {
 			on_select(ch);
 			if (m_board->is_solved()) {
 				m_iface->set_prompt("Solved! Well done!");
@@ -148,7 +148,7 @@ read:
 
 	if (ch == 'q' || ch == HRD_CTRL_C) {
 		m_iface->set_prompt("Cancelled.");
-	} else if (isdigit(ch)) {
+	} else if (key_isdigit(ch)) {
 		m_iface->unget_event(ch);
 		return;
 	} else if (ch == '\n') {
@@ -194,7 +194,7 @@ again:
 		if (ch == 'q' || ch == HRD_CTRL_C || ch == '\n') {
 			m_iface->set_prompt("Ready.");
 			return;
-		} else if (isdigit(ch)) {
+		} else if (key_isdigit(ch)) {
 			m_iface->unget_event(ch);
 			return;
 		} else if ((d2 = char2dir(ch)) != 0) {
@@ -312,7 +312,7 @@ Game::on_bsave(int c)
 	m_iface->draw();
 
 	int c2 = m_iface->get_event();
-	if (!isalnum(c2)) {
+	if (!key_isalnum(c2)) {
 		flash();
 		return;
 	}
@@ -335,7 +335,7 @@ Game::on_bload(int c)
 	m_iface->draw();
 
 	int c2 = m_iface->get_event();
-	if (!isalnum(c2)) {
+	if (!key_isalnum(c2)) {
 		flash();
 		return;
 	}
