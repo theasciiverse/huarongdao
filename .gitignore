@@ -1,0 +1,13 @@
+out/
+stage/
+dist/
+__pycache__/
+*.o
+/hrd
+config.h
+config.log
+config.status
+Makefile
+stamp-h1
+.deps/
+!asciiverse/config.h
