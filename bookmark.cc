@@ -201,8 +201,9 @@ Bookmark::save(char key, const string& pat,
 	}
 
 	if ((p0 = (char*)mmap(0, map_length, PROT_READ|PROT_WRITE, 
-				MAP_SHARED, fd, 0)) == 0) {
+				MAP_SHARED, fd, 0)) == MAP_FAILED) {
 		error = errno;
+		p0 = 0;
 		goto out;
 	}
 	
@@ -303,9 +304,15 @@ Bookmark::load(char key, Board** ppb, vector<Board::Move>* pmv)
 		goto out;
 	}
 
+	if (st.st_size == 0) {
+		error = ENOENT;		/* no bookmarks saved yet */
+		goto out;
+	}
+
 	if ((p = (char*)mmap(0, st.st_size, PROT_READ, 
-				MAP_SHARED, fd, 0)) == 0) {
+				MAP_SHARED, fd, 0)) == MAP_FAILED) {
 		error = errno;
+		p = 0;
 		goto out;
 	}
 
