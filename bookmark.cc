@@ -119,11 +119,37 @@ Bookmark::init(const string& fn0)
 		}
 	}
 
-	const string dir = string(getenv("HOME")) + "/.hrd";
+	/* $XDG_DATA_HOME/hrd, or ~/.local/share/hrd; an empty or relative
+	 * XDG_DATA_HOME counts as unset (XDG spec) */
+	const char* xdg = getenv("XDG_DATA_HOME");
+	const char* home = getenv("HOME");
+	string dir;
+	if (xdg && xdg[0] == '/')
+		dir = string(xdg) + "/hrd";
+	else if (home && home[0])
+		dir = string(home) + "/.local/share/hrd";
+	else
+		return 0;	/* nowhere to keep bookmarks: play without them */
+
+	/* the ~/.hrd of older versions stays in use while the new folder
+	 * does not exist */
+	if (home && home[0] && access(dir.c_str(), F_OK) < 0) {
+		const string old = string(home) + "/.hrd";
+		if (access((old + "/bookmark").c_str(), F_OK) == 0)
+			dir = old;
+	}
+
 	const string fn = dir + "/bookmark";
 
-	if (access(dir.c_str(), F_OK) < 0 && mkdir(dir.c_str(), 0777) < 0)
-		return errno;
+	/* the folder and any missing parents */
+	for (size_t i = 1; i <= dir.size(); ++i) {
+		if (i == dir.size() || dir[i] == '/') {
+			const string part = dir.substr(0, i);
+			if (access(part.c_str(), F_OK) < 0
+					&& mkdir(part.c_str(), 0777) < 0)
+				return errno;
+		}
+	}
 	if (access(fn.c_str(), R_OK|W_OK) < 0) {
 		int fd;
 		if ((fd = open(fn.c_str(), O_RDWR|O_CREAT, 0666)) < 0 
