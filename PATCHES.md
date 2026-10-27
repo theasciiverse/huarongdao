@@ -77,3 +77,9 @@ after a resize to 60x22. ASan and UBSan: three 40-second runs of random
 keys (pieces, arrows, undo, redo, bookmarks, Ctrl-C, Ctrl-L) with random
 resizes, plus custom and invalid patterns, no reports. macOS: not built
 here.
+
+## Ours
+
+- **How to play it, at the top of README.** A short note on installing and
+  starting it with av, or from a release archive; the original text follows
+  unchanged.
